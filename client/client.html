@@ -13,6 +13,8 @@
     const handleResponse = (xhr) => {
         const type = xhr.getResponseHeader("content-type");
         
+        let message = "???"
+        
       //grab the content section
       const content = document.querySelector("#content");
       
@@ -133,35 +135,35 @@
             
             if(type == "application/json") {
             if(value == "/success") {
-                sendAjax('/success',type);
+                sendAjax('/success','application/json');
             } else if(value == "/badRequest") {
-                sendAjax('/badRequest',type);
+                sendAjax('/badRequest','application/json');
             } else if(value == "/unauthorized") {
-                sendAjax('/unauthorized',type);
+                sendAjax('/unauthorized','application/json');
             } else if(value == "/forbidden") {
-                sendAjax('/forbidden',type);
+                sendAjax('/forbidden','application/json');
             } else if(value == "/internal") {
-                sendAjax('/internal',type);
+                sendAjax('/internal','application/json');
             } else if(value == "/notImplemented") {
-                sendAjax('/notImplemented',type);
+                sendAjax('/notImplemented','application/json');
             }else {
-                sendAjax('/notFoundURL',type);
+                sendAjax('/notFoundURL','application/json');
             }
         } else if(type == "text/xml") {
             if(value == "/success") {
-                sendAjax('/success',type);
+                sendAjax('/success','text/xml');
             } else if(value == "/badRequest") {
-                sendAjax('/badRequest',type);
+                sendAjax('/badRequest','text/xml');
             } else if(value == "/unauthorized") {
-                sendAjax('/unauthorized',type);
+                sendAjax('/unauthorized','text/xml');
             } else if(value == "/forbidden") {
-                sendAjax('/forbidden',type);
+                sendAjax('/forbidden','text/xml');
             } else if(value == "/internal") {
-                sendAjax('/internal',type);
+                sendAjax('/internal','text/xml');
             } else if(value == "/notImplemented") {
-                sendAjax('/notImplemented',type);
+                sendAjax('/notImplemented','text/xml');
             }else {
-                sendAjax('/notFoundURL',type);
+                sendAjax('/notFoundURL','text/xml');
             }
         }
         });
