@@ -23,7 +23,6 @@ const success = (request, response, acceptedTypes) => {
             <message>${responseJSON.message}</message>
         </response>`;
     return respond(request, response, responseXML, 'text/xml');
-      console.log(responseXML);
   }
 
   // send our json with a success status code
