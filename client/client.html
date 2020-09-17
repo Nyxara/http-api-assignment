@@ -47,9 +47,51 @@
           content.innerHTML = `Error code not implemented by client.`;
           break;
       }
+            
+            message = obj.message;
         
-        content.innerHTML += `<p> Message: ${obj.message}</p>`
+        /*content.innerHTML += `<p> Message: ${obj.message}</p>`*/
+        }else if(type === 'text/xml') {
+            
+      //check the xhr status code and handle accordingly
+      switch(xhr.status) {
+        case 200: //success
+          content.innerHTML = `<b>Success!</b>`;
+          break;
+        case 400: //bad request 
+          content.innerHTML = `<b>Bad Request</b>`;
+          break;
+        case 401: //unauthorized
+          content.innerHTML = `<b>Unauthorized</b>`;
+          break;
+        case 404: //not found (requested resource does not exist)
+          content.innerHTML = `<b>Resource Not Found</b>`;
+          break;
+        case 403: //forbidden
+          content.innerHTML = `<b>Forbidden</b>`;
+          break;
+        case 500: //internal
+          content.innerHTML = `<b>Internal Server Error</b>`;
+          break;
+        case 501: //not implemented
+          content.innerHTML = `<b>Not Implemented</b>`;
+          break;
+        default: //default other errors we are not handling in this example
+          content.innerHTML = `Error code not implemented by client.`;
+          break;
+      }
+            
+            message = xhr.responseXML.querySelector("message").textContent;
+        
+        /*content.innerHTML += `<p> Message: ${obj.message}</p>`*/
         }
+        console.log(xhr.response);
+        content.innerHTML = `
+			<hr>
+			<h1>${type}</h1>
+			<p>${xhr.response}</p>
+			<p>message=${message}</p>
+			`;
     };
     
     
@@ -91,19 +133,35 @@
             
             if(type == "application/json") {
             if(value == "/success") {
-                sendAjax('/success','application/json');
+                sendAjax('/success',type);
             } else if(value == "/badRequest") {
-                sendAjax('/badRequest','application/json');
+                sendAjax('/badRequest',type);
             } else if(value == "/unauthorized") {
-                sendAjax('/unauthorized','application/json');
+                sendAjax('/unauthorized',type);
             } else if(value == "/forbidden") {
-                sendAjax('/forbidden','application/json');
+                sendAjax('/forbidden',type);
             } else if(value == "/internal") {
-                sendAjax('/internal','application/json');
+                sendAjax('/internal',type);
             } else if(value == "/notImplemented") {
-                sendAjax('/notImplemented','application/json');
+                sendAjax('/notImplemented',type);
             }else {
-                sendAjax('/notFoundURL','application/json');
+                sendAjax('/notFoundURL',type);
+            }
+        } else if(type == "text/xml") {
+            if(value == "/success") {
+                sendAjax('/success',type);
+            } else if(value == "/badRequest") {
+                sendAjax('/badRequest',type);
+            } else if(value == "/unauthorized") {
+                sendAjax('/unauthorized',type);
+            } else if(value == "/forbidden") {
+                sendAjax('/forbidden',type);
+            } else if(value == "/internal") {
+                sendAjax('/internal',type);
+            } else if(value == "/notImplemented") {
+                sendAjax('/notImplemented',type);
+            }else {
+                sendAjax('/notFoundURL',type);
             }
         }
         });

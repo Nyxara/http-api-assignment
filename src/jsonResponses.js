@@ -23,10 +23,11 @@ const success = (request, response, acceptedTypes) => {
             <message>${responseJSON.message}</message>
         </response>`;
     return respond(request, response, responseXML, 'text/xml');
+      console.log(responseXML);
   }
 
   // send our json with a success status code
-  respond(request, response, 200, responseJSON, 'application/json');
+  return respond(request, response, 200, responseJSON, 'application/json');
 };
 
 // function to show a bad request without the correct parameters
@@ -118,7 +119,7 @@ const forbidden = (request, response, acceptedTypes) => {
   }
 
   // return our json with a 403 forbidden error code
-  respond(request, response, 403, responseJSON, 'application/json');
+  return respond(request, response, 403, responseJSON, 'application/json');
 };
 
 const internal = (request, response, acceptedTypes) => {
@@ -137,7 +138,7 @@ const internal = (request, response, acceptedTypes) => {
   }
 
   // return our json with a 500 internal error code
-  respond(request, response, 500, responseJSON, 'application/json');
+  return respond(request, response, 500, responseJSON, 'application/json');
 };
 
 const notImplemented = (request, response, acceptedTypes) => {
@@ -156,7 +157,7 @@ const notImplemented = (request, response, acceptedTypes) => {
   }
 
   // return our json with a 501 not implemented error code
-  respond(request, response, 501, responseJSON, 'application/json');
+  return respond(request, response, 501, responseJSON, 'application/json');
 };
 
 // function to show not found error
@@ -176,7 +177,7 @@ const notFound = (request, response, acceptedTypes) => {
   }
 
   // return our json with a 404 not found error code
-  respond(request, response, 404, responseJSON, 'application/json');
+  return respond(request, response, 404, responseJSON, 'application/json');
 };
 
 // exports to set functions to public.
